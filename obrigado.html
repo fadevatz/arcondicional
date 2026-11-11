@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscrição Confirmada! — Compuway Bebedouro</title>
+  
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              blue: '#056CEC',
+              blueDark: '#034DB0',
+              whatsapp: '#25D366',
+              whatsappHover: '#1EBE5D',
+            }
+          },
+          boxShadow: {
+            'glow-whatsapp': '0 10px 25px -5px rgba(37, 211, 102, 0.4)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .hero-light-spotlight {
+      background: radial-gradient(
+        circle at 50% 20%,
+        rgba(5, 108, 236, 0.08) 0%,
+        rgba(240, 246, 255, 0.6) 50%,
+        #ffffff 80%
+      );
+    }
+
+    .btn-whatsapp-glow {
+      background: linear-gradient(135deg, #25D366 0%, #1EBE5D 100%);
+      box-shadow: 0 10px 25px -4px rgba(37, 211, 102, 0.45);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-whatsapp-glow:hover {
+      box-shadow: 0 15px 35px -4px rgba(37, 211, 102, 0.65);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800 font-sans min-h-screen flex flex-col justify-between hero-light-spotlight antialiased">
+
+  <!-- Cabeçalho -->
+  <header class="py-6 bg-white/90 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 flex items-center justify-center">
+      <img 
+        src="assets/logo-compuway.png" 
+        alt="Compuway Bebedouro" 
+        class="h-9 sm:h-11 w-auto object-contain"
+      />
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="flex-grow flex items-center justify-center px-4 py-12">
+    <div class="max-w-xl w-full bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-2xl text-center flex flex-col items-center gap-6">
+      
+      <!-- Ícone de Sucesso -->
+      <div class="w-20 h-20 rounded-full bg-emerald-50 border-2 border-emerald-200 flex items-center justify-center shadow-lg shadow-emerald-500/10 text-emerald-600">
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+
+      <!-- Título de Boas-Vindas -->
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-blue">Solicitação Recebida com Sucesso!</span>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 mt-1.5 leading-tight">
+          Falta apenas <span class="text-brand-blue">1 passo importante</span> para você garantir sua vaga
+        </h1>
+      </div>
+
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-md">
+        Clique no botão abaixo para conversar diretamente com um consultor da <strong class="text-slate-900">Compuway Bebedouro</strong> no WhatsApp e receber todos os detalhes de horários, turmas e condições especiais.
+      </p>
+
+      <!-- Botão VIP WhatsApp -->
+      <a 
+        href="https://wa.me/5517997756941?text=Ol%C3%A1!%20Acabei%20de%20me%20cadastrar%20na%20p%C3%A1gina%20do%20Curso%20de%20Ar-Condicionado%20da%20Compuway%20e%20gostaria%20de%20receber%20as%20informa%C3%A7%C3%B5es." 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-whatsapp-glow w-full py-4 px-6 rounded-2xl text-white font-black text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-3">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.044c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.178 1.564 5.927l-1.572 5.742 5.894-1.547c1.677.915 3.593 1.434 5.626 1.434 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+        </svg>
+        <span>CONVERSAR COM A COMPUWAY NO WHATSAPP</span>
+      </a>
+
+      <!-- Lista de Segurança / Informações -->
+      <div class="border-t border-slate-100 pt-5 w-full text-left flex flex-col gap-2.5 text-xs text-slate-500">
+        <div class="flex items-center gap-2">
+          <span class="text-brand-blue font-bold">✔</span>
+          <span>Atendimento rápido e humanizado pelo WhatsApp oficial: (17) 99775-6941.</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-brand-blue font-bold">✔</span>
+          <span>Turmas presenciais reduzidas em Bebedouro-SP.</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Rodapé Simples -->
+  <footer class="py-6 border-t border-slate-200 text-center text-xs text-slate-500">
+    Compuway Bebedouro &copy; 2026 - R. Dr. Oscár Werneck, 697 - Centro, Bebedouro - SP
+  </footer>
+
+</body>
+</html>

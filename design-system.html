@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System — Compuway Bebedouro</title>
+
+  <!-- Favicon Oficial Compuway -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            canvas: {
+              dark: '#06121E',
+              darker: '#03080E',
+              card: '#0F1922',
+              cardBorder: '#1E293B',
+            },
+            brand: {
+              blue: '#056CEC',
+              blueDark: '#0455B8',
+              cyan: '#38BDF8',
+              cyanGlow: '#00D2FF',
+            }
+          },
+          boxShadow: {
+            'glow-cyan': '0 0 25px rgba(56, 189, 248, 0.45)',
+            'glow-cyan-lg': '0 0 45px rgba(56, 189, 248, 0.65)',
+            'glow-blue': '0 0 30px rgba(5, 108, 236, 0.5)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos dos Componentes Documentados */
+    .hero-spotlight {
+      background: radial-gradient(
+        circle at 80% 25%,
+        rgba(5, 108, 236, 0.28) 0%,
+        rgba(6, 18, 30, 0.85) 45%,
+        #06121e 80%
+      );
+    }
+
+    .btn-neon-glow {
+      background: #0f1922;
+      border: 1px solid rgba(56, 189, 248, 0.75);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), inset 0 0 14px rgba(56, 189, 248, 0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-neon-glow:hover {
+      box-shadow: 0 0 35px rgba(56, 189, 248, 0.75), inset 0 0 20px rgba(56, 189, 248, 0.3);
+      transform: translateY(-2px);
+      border-color: #38bdf8;
+    }
+
+    .glass-card {
+      background: linear-gradient(180deg, rgba(15, 25, 34, 0.9) 0%, rgba(10, 16, 22, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #06121E;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+</head>
+<body class="bg-[#03080E] text-slate-100 font-sans antialiased selection:bg-brand-cyan selection:text-slate-950 min-h-screen flex">
+
+  <!-- ========================================== -->
+  <!-- SIDEBAR DE NAVEGAÇÃO DA DOCUMENTAÇÃO       -->
+  <!-- ========================================== -->
+  <aside class="w-72 bg-[#06121E] border-r border-slate-800/80 fixed inset-y-0 left-0 hidden lg:flex flex-col z-30">
+    <!-- Brand Header -->
+    <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-blue to-brand-cyan flex items-center justify-center font-black text-slate-950 text-sm">
+        ❄
+      </div>
+      <div>
+        <h1 class="text-sm font-bold text-white tracking-wide">Design System</h1>
+        <p class="text-[11px] text-slate-400">Viver de Ar-condicionado</p>
+      </div>
+    </div>
+
+    <!-- Navegação -->
+    <nav class="flex-1 overflow-y-auto p-4 space-y-1 text-sm font-medium">
+      <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-2">Fundamentos</div>
+      <a href="#visao-geral" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+        <span>📖</span> Visão Geral & Marca
+      </a>
+      <a href="#cores" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+        <span>🎨</span> Paleta de Cores
+      </a>
+      <a href="#tipografia" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+        <span>🔤</span> Tipografia & Escala
+      </a>
+      <a href="#efeitos" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+        <span>✨</span> Efeitos & Sombras
+      </a>
+
+      <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-2 pt-4">Componentes</div>
+      <a href="#componente-badges" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+        <span>🏷️</span> Badges & Pílulas
+      </a>
+      <a href="#componente-botoes" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+        <span>🔘</span> Botões (CTAs & Neon)
+      </a>
+      <a href="#componente-formulario" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+        <span>📝</span> Formulário de Captura
+      </a>
+      <a href="#componente-cards" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+        <span>📦</span> Cards de Conteúdo
+      </a>
+      <a href="#componente-autoridade" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+        <span>👨‍🏫</span> Cards de Autoridade
+      </a>
+
+      <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3 py-2 pt-4">Exportação</div>
+      <a href="#tokens-codigo" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition">
+        <span>💻</span> CSS & Tailwind Tokens
+      </a>
+    </nav>
+
+    <!-- Versão do Sistema -->
+    <div class="p-4 border-t border-slate-800/80 text-[11px] text-slate-500 flex justify-between items-center">
+      <span>Versão 1.0.0</span>
+      <span class="px-2 py-0.5 rounded bg-brand-cyan/10 text-brand-cyan font-mono">viverdear.com.br</span>
+    </div>
+  </aside>
+
+  <!-- ========================================== -->
+  <!-- CONTEÚDO PRINCIPAL DA DOCUMENTAÇÃO         -->
+  <!-- ========================================== -->
+  <main class="flex-1 lg:ml-72 p-6 sm:p-10 lg:p-14 max-w-6xl">
+    
+    <!-- Header Principal -->
+    <div class="border-b border-slate-800 pb-8 mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs font-semibold uppercase tracking-wider mb-3">
+        Guia de Estilo & Design System
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+        Documentação do Design System
+      </h1>
+      <p class="text-slate-400 text-base mt-2 max-w-3xl leading-relaxed">
+        Especificação de tokens visuais, paleta de cores, tipografia, efeitos de iluminação e biblioteca de componentes extraídos da landing page do <strong class="text-slate-200">Treinamento Viver de Ar (Fábio Dutra)</strong>.
+      </p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 1. VISÃO GERAL & PRINCÍPIOS                -->
+    <!-- ========================================== -->
+    <section id="visao-geral" class="mb-16 scroll-mt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5 mb-4">
+        <span class="w-3 h-3 rounded-full bg-brand-cyan"></span>
+        1. Visão Geral & Direção de Arte
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-canvas-card border border-slate-800 p-5 rounded-xl">
+          <h3 class="text-sm font-bold text-white mb-1">Climatização & Negócios</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Abordagem voltada para formação profissional e faturamento expressivo (R$ 10k/mês), unindo rigor técnico e apelo comercial.
+          </p>
+        </div>
+        <div class="bg-canvas-card border border-slate-800 p-5 rounded-xl">
+          <h3 class="text-sm font-bold text-white mb-1">Dark High-Tech + Neon</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Fundo azul-marinho profundo quase preto com destaques em azul elétrico e halos ciano neon para conduzir o olhar do visitante aos CTAs.
+          </p>
+        </div>
+        <div class="bg-canvas-card border border-slate-800 p-5 rounded-xl">
+          <h3 class="text-sm font-bold text-white mb-1">Foco em Conversão (Lançamento)</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Hierarquia clara com badges de urgência de evento ao vivo, prova de autoridade do mentor e formulário de alta fricção zero.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. PALETA DE CORES (SWATCHES)              -->
+    <!-- ========================================== -->
+    <section id="cores" class="mb-16 scroll-mt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5 mb-4">
+        <span class="w-3 h-3 rounded-full bg-brand-cyan"></span>
+        2. Paleta de Cores (Color Tokens)
+      </h2>
+      <p class="text-sm text-slate-400 mb-6">
+        Cores extraídas da interface com seus valores hexadecimais, funções semânticas e exemplos de aplicação.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Canvas Dark -->
+        <div class="bg-canvas-card border border-slate-800 rounded-xl overflow-hidden shadow-lg">
+          <div class="h-24 bg-[#06121E] border-b border-slate-800 flex items-end p-3">
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900/80 px-2 py-0.5 rounded">bg-canvas-dark</span>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-1">
+              <span class="font-bold text-white text-sm">Dark Canvas</span>
+              <code class="text-xs text-brand-cyan font-mono font-bold">#06121E</code>
+            </div>
+            <p class="text-xs text-slate-400">Fundo principal da página e do Hero.</p>
+          </div>
+        </div>
+
+        <!-- Electric Blue -->
+        <div class="bg-canvas-card border border-slate-800 rounded-xl overflow-hidden shadow-lg">
+          <div class="h-24 bg-[#056CEC] flex items-end p-3">
+            <span class="text-[10px] font-mono text-white bg-blue-900/60 px-2 py-0.5 rounded">primary-electric</span>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-1">
+              <span class="font-bold text-white text-sm">Electric Blue</span>
+              <code class="text-xs text-brand-cyan font-mono font-bold">#056CEC</code>
+            </div>
+            <p class="text-xs text-slate-400">Seção 2 de reforço, links e CTAs primários.</p>
+          </div>
+        </div>
+
+        <!-- Neon Cyan -->
+        <div class="bg-canvas-card border border-slate-800 rounded-xl overflow-hidden shadow-lg">
+          <div class="h-24 bg-[#38BDF8] flex items-end p-3 shadow-[inset_0_0_20px_rgba(0,0,0,0.2)]">
+            <span class="text-[10px] font-mono text-slate-950 font-bold bg-white/70 px-2 py-0.5 rounded">neon-glow-cyan</span>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-1">
+              <span class="font-bold text-white text-sm">Cyan Neon Glow</span>
+              <code class="text-xs text-brand-cyan font-mono font-bold">#38BDF8</code>
+            </div>
+            <p class="text-xs text-slate-400">Destaques da headline e brilho externo.</p>
+          </div>
+        </div>
+
+        <!-- Surface Card -->
+        <div class="bg-canvas-card border border-slate-800 rounded-xl overflow-hidden shadow-lg">
+          <div class="h-24 bg-[#0F1922] border-b border-slate-800 flex items-end p-3">
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900/80 px-2 py-0.5 rounded">surface-card</span>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-1">
+              <span class="font-bold text-white text-sm">Surface Card</span>
+              <code class="text-xs text-brand-cyan font-mono font-bold">#0F1922</code>
+            </div>
+            <p class="text-xs text-slate-400">Cards de módulos e perfil de professores.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. TIPOGRAFIA                              -->
+    <!-- ========================================== -->
+    <section id="tipografia" class="mb-16 scroll-mt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5 mb-4">
+        <span class="w-3 h-3 rounded-full bg-brand-cyan"></span>
+        3. Tipografia & Escala Visual
+      </h2>
+      <p class="text-sm text-slate-400 mb-6">
+        Família tipográfica geométrica sem serifa (<strong>Inter</strong> / <strong>Montserrat</strong>).
+      </p>
+
+      <div class="bg-canvas-card border border-slate-800 rounded-xl p-6 space-y-6">
+        
+        <!-- H1 -->
+        <div class="border-b border-slate-800 pb-5">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-mono text-brand-cyan">H1 (Hero Heading) — 40px/48px | Bold (800)</span>
+            <span class="text-xs text-slate-500 font-mono">tracking-tight</span>
+          </div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-white">
+            Descubra como fazer mais de <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-sky-300">R$ 10 mil por mês</span> com ar-condicionado
+          </p>
+        </div>
+
+        <!-- H2 -->
+        <div class="border-b border-slate-800 pb-5">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-mono text-brand-cyan">H2 (Section Heading) — 28px/32px | Bold (700)</span>
+            <span class="text-xs text-slate-500 font-mono">text-white</span>
+          </div>
+          <p class="text-xl sm:text-2xl font-bold text-white">
+            Veja o que você vai dominar no Viver de Ar-condicionado
+          </p>
+        </div>
+
+        <!-- Subtítulo / Lead -->
+        <div class="border-b border-slate-800 pb-5">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-mono text-brand-cyan">Body Lead — 16px/18px | Regular (400)</span>
+            <span class="text-xs text-slate-500 font-mono">text-slate-300</span>
+          </div>
+          <p class="text-base text-slate-300 leading-relaxed">
+            Treinamento 100% online e gratuito para se tornar um profissional requisitado e dominar manutenção, consertos e captação de clientes.
+          </p>
+        </div>
+
+        <!-- Badges & UI Microcopy -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-mono text-brand-cyan">Microcopy / Badges — 12px | Semibold (600) Uppercase</span>
+            <span class="text-xs text-slate-500 font-mono">tracking-wider</span>
+          </div>
+          <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            Do dia 23/09 a 02/10 • Ao vivo no YouTube • Vagas 100% Gratuitas
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. EFEITOS VISUAIS & SOMBRAS               -->
+    <!-- ========================================== -->
+    <section id="efeitos" class="mb-16 scroll-mt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5 mb-4">
+        <span class="w-3 h-3 rounded-full bg-brand-cyan"></span>
+        4. Efeitos Visuais & Sombras (Glows & Spotlights)
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Glow Cyan Effect -->
+        <div class="bg-canvas-card border border-slate-800 p-6 rounded-xl flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm font-bold text-white mb-2">Neon Outer Glow (Ciano)</h3>
+            <p class="text-xs text-slate-400 mb-4">
+              Aplicado aos botões finais de inscrição para gerar atração magnética na CTA.
+            </p>
+          </div>
+          <div class="py-6 flex justify-center bg-[#06121E] rounded-lg border border-slate-800">
+            <button class="btn-neon-glow px-6 py-3 rounded-full text-white text-xs font-extrabold uppercase tracking-wider">
+              Aura Luminosa Ativa
+            </button>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800">
+            <code class="text-[11px] font-mono text-brand-cyan">box-shadow: 0 0 25px rgba(56, 189, 248, 0.45);</code>
+          </div>
+        </div>
+
+        <!-- Glassmorphism -->
+        <div class="bg-canvas-card border border-slate-800 p-6 rounded-xl flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm font-bold text-white mb-2">Glassmorphism Escuro</h3>
+            <p class="text-xs text-slate-400 mb-4">
+              Superfície translúcida com desfoque de fundo e borda ultra fina para profundidade.
+            </p>
+          </div>
+          <div class="py-6 flex justify-center bg-gradient-to-r from-blue-950 to-slate-900 rounded-lg p-4">
+            <div class="glass-card p-4 rounded-xl text-center max-w-xs">
+              <span class="text-xs font-bold text-white">Card com Efeito Vidro</span>
+              <p class="text-[11px] text-slate-400 mt-1">Borda com 8% de opacidade e blur(12px).</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800">
+            <code class="text-[11px] font-mono text-brand-cyan">backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08);</code>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. COMPONENTES: BADGES & PÍLULAS           -->
+    <!-- ========================================== -->
+    <section id="componente-badges" class="mb-16 scroll-mt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5 mb-4">
+        <span class="w-3 h-3 rounded-full bg-brand-cyan"></span>
+        5. Componentes: Badges & Pílulas
+      </h2>
+
+      <div class="bg-canvas-card border border-slate-800 rounded-xl p-6">
+        <div class="flex flex-wrap items-center gap-4 mb-6 p-6 bg-[#06121E] rounded-lg border border-slate-800">
+          
+          <!-- Badge Hero Escuro -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/70 text-xs font-semibold uppercase tracking-wider text-slate-200">
+            <svg class="w-3.5 h-3.5 text-brand-cyan" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+            </svg>
+            DO DIA 23/09 A 02/10
+          </div>
+
+          <!-- Badge YouTube -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/70 text-xs font-semibold uppercase tracking-wider text-slate-200">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+            AO VIVO NO YOUTUBE
+          </div>
+
+          <!-- Badge Sólido (Seção Azul) -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-wider shadow">
+            AO VIVO NO YOUTUBE
+          </div>
+
+        </div>
+
+        <div class="text-xs text-slate-400">
+          <strong>Uso:</strong> Informar data, horário e plataforma de transmissão com alto destaque e formato ergonômico em pílula (<code class="text-brand-cyan font-mono">rounded-full</code>).
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 6. COMPONENTES: BOTÕES (CTAs)              -->
+    <!-- ========================================== -->
+    <section id="componente-botoes" class="mb-16 scroll-mt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5 mb-4">
+        <span class="w-3 h-3 rounded-full bg-brand-cyan"></span>
+        6. Componentes: Botões de Ação (CTAs)
+      </h2>
+
+      <div class="space-y-4">
+        
+        <!-- CTA 1: Botão Neon Glow -->
+        <div class="bg-canvas-card border border-slate-800 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="max-w-md">
+            <h3 class="text-sm font-bold text-white">Botão Glow Ciano (Fechamento / Conversão Final)</h3>
+            <p class="text-xs text-slate-400 mt-1">Usado ao término do grid de módulos e na seção de professores para capturar a atenção de quem escaneou até o final.</p>
+          </div>
+          <div>
+            <button class="btn-neon-glow inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-white font-extrabold text-xs uppercase tracking-wider">
+              <span>QUERO MINHA VAGA NO TREINAMENTO</span>
+              <div class="w-6 h-6 rounded-full bg-brand-cyan/20 flex items-center justify-center text-brand-cyan">➔</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- CTA 2: Botão Branco de Alto Contraste -->
+        <div class="bg-canvas-card border border-slate-800 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="max-w-md">
+            <h3 class="text-sm font-bold text-white">Botão Branco Puro (Seção Azul)</h3>
+            <p class="text-xs text-slate-400 mt-1">Fundo branco com texto em azul elétrico, projetado especificamente para contrastar com a faixa <code class="text-brand-cyan font-mono">#056CEC</code>.</p>
+          </div>
+          <div class="p-4 bg-brand-blue rounded-lg">
+            <button class="px-6 py-3 rounded-lg bg-white hover:bg-slate-100 text-brand-blue font-extrabold text-xs uppercase tracking-wider shadow-lg">
+              QUERO MINHA VAGA GRATUITA
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 7. COMPONENTES: FORMULÁRIO DE CAPTURA      -->
+    <!-- ========================================== -->
+    <section id="componente-formulario" class="mb-16 scroll-mt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5 mb-4">
+        <span class="w-3 h-3 rounded-full bg-brand-cyan"></span>
+        7. Componentes: Formulário de Captura
+      </h2>
+
+      <div class="bg-canvas-card border border-slate-800 rounded-xl p-6">
+        <div class="max-w-md mx-auto p-6 bg-[#06121E] border border-slate-800 rounded-2xl">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brand-cyan"></span>
+            Preview do Formulário Hero
+          </h4>
+          
+          <div class="space-y-3">
+            <input type="text" placeholder="Seu primeiro nome" class="w-full px-3.5 py-2.5 rounded-lg bg-[#F8FAFC] text-slate-900 placeholder-slate-400 text-xs font-medium border border-slate-300" />
+            <input type="email" placeholder="Seu melhor e-mail" class="w-full px-3.5 py-2.5 rounded-lg bg-[#F8FAFC] text-slate-900 placeholder-slate-400 text-xs font-medium border border-slate-300" />
+            <div class="flex items-center rounded-lg bg-[#F8FAFC] border border-slate-300 px-3 py-1">
+              <span class="text-xs font-semibold text-slate-600 pr-2 border-r border-slate-300 mr-2">🇧🇷 +55</span>
+              <input type="tel" placeholder="(11) 99999-9999" class="w-full py-1.5 bg-transparent text-slate-900 placeholder-slate-400 text-xs font-medium focus:outline-none" />
+            </div>
+            <button class="w-full py-3 rounded-lg bg-gradient-to-r from-brand-blue to-blue-600 text-white font-extrabold text-xs uppercase tracking-wider">
+              GARANTIR MINHA VAGA
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 8. COMPONENTES: CARDS DE CONTEÚDO          -->
+    <!-- ========================================== -->
+    <section id="componente-cards" class="mb-16 scroll-mt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5 mb-4">
+        <span class="w-3 h-3 rounded-full bg-brand-cyan"></span>
+        8. Componentes: Cards de Conteúdo (Grid 3x2)
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="glass-card p-6 rounded-2xl flex flex-col gap-3">
+          <div class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-center text-brand-cyan">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-white">Como começar do zero</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            O caminho para quem não tem ferramentas ou clientes e quer alcançar estabilidade e renda recorrente em climatização.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl flex flex-col gap-3">
+          <div class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-center text-brand-cyan">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-white">Precificação e Lucratividade</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Como cobrar o preço justo pelos serviços de manutenção preventiva e instalação sem brigar por centavos.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 9. COMPONENTES: CARDS DE AUTORIDADE        -->
+    <!-- ========================================== -->
+    <section id="componente-autoridade" class="mb-16 scroll-mt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5 mb-4">
+        <span class="w-3 h-3 rounded-full bg-brand-cyan"></span>
+        9. Componentes: Card de Autoridade (Perfil dos Mentores)
+      </h2>
+
+      <div class="bg-canvas-card border border-slate-800 rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-12 items-center">
+        <div class="md:col-span-4 bg-gradient-to-t from-slate-950 via-slate-900 to-sky-950/30 p-6 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-slate-800">
+          <div class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-brand-blue to-brand-cyan p-0.5 shadow-xl">
+            <div class="w-full h-full rounded-[14px] bg-slate-900 flex items-center justify-center text-2xl text-brand-cyan font-black">
+              FD
+            </div>
+          </div>
+          <h3 class="text-base font-bold text-white mt-3 text-center">Fábio Dutra</h3>
+          <span class="text-[11px] uppercase font-bold text-brand-cyan tracking-wider mt-0.5 text-center">Mentor Principal</span>
+        </div>
+
+        <div class="md:col-span-8 p-6 flex flex-col gap-2.5">
+          <h4 class="text-xs uppercase font-bold text-slate-400 tracking-wider">Credenciais & Números</h4>
+          <ul class="flex flex-col gap-2 text-xs text-slate-300">
+            <li class="flex items-start gap-2">
+              <span class="text-brand-cyan font-bold">✔</span>
+              <span><strong>+20 anos</strong> de experiência no setor de climatização.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-brand-cyan font-bold">✔</span>
+              <span>Ex-executivo de multinacionais como <strong>Midea Carrier</strong> e <strong>Hitachi</strong>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-brand-cyan font-bold">✔</span>
+              <span>Mais de <strong>14.000 alunos</strong> capacitados no Brasil e exterior.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 10. CÓDIGO & EXPORTAÇÃO DOS TOKENS         -->
+    <!-- ========================================== -->
+    <section id="tokens-codigo" class="mb-16 scroll-mt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5 mb-4">
+        <span class="w-3 h-3 rounded-full bg-brand-cyan"></span>
+        10. Exportação de Tokens (CSS & Tailwind)
+      </h2>
+
+      <div class="bg-canvas-card border border-slate-800 rounded-xl p-6 space-y-6">
+        
+        <!-- CSS Variables -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Variáveis CSS Nativas</span>
+            <span class="text-[11px] text-brand-cyan font-mono">tokens.css</span>
+          </div>
+          <pre class="bg-[#03080E] p-4 rounded-lg text-xs font-mono text-slate-300 overflow-x-auto border border-slate-800">
+:root {
+  /* Canvas & Superfícies */
+  --color-canvas-dark: #06121E;
+  --color-canvas-card: #0F1922;
+  --color-canvas-border: rgba(255, 255, 255, 0.08);
+
+  /* Acentos de Marca */
+  --color-brand-blue: #056CEC;
+  --color-brand-cyan: #38BDF8;
+  --color-brand-glow: rgba(56, 189, 248, 0.45);
+
+  /* Tipografia */
+  --font-family: 'Inter', -apple-system, sans-serif;
+  
+  /* Raios de Borda */
+  --radius-badge: 9999px;
+  --radius-card: 16px;
+  --radius-input: 8px;
+}</pre>
+        </div>
+
+        <!-- Tailwind Configuration -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Tailwind Config</span>
+            <span class="text-[11px] text-brand-cyan font-mono">tailwind.config.js</span>
+          </div>
+          <pre class="bg-[#03080E] p-4 rounded-lg text-xs font-mono text-slate-300 overflow-x-auto border border-slate-800">
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        canvas: {
+          dark: '#06121E',
+          card: '#0F1922',
+        },
+        brand: {
+          blue: '#056CEC',
+          cyan: '#38BDF8',
+        }
+      },
+      boxShadow: {
+        'glow-cyan': '0 0 25px rgba(56, 189, 248, 0.45)',
+        'glow-blue': '0 0 30px rgba(5, 108, 236, 0.5)',
+      }
+    }
+  }
+}</pre>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
