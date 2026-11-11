@@ -173,8 +173,20 @@
       );
     }
 
+    /* Textura Técnica de Fundo (Grelha de Ar-Condicionado) */
+    .bg-tech-pattern {
+      background-image: url('assets/textura-dark.png');
+      background-repeat: repeat;
+      background-size: 140px auto;
+    }
+
     .section-blue-gradient {
-      background: linear-gradient(135deg, #056CEC 0%, #0348A1 100%);
+      background-color: #056CEC;
+      background-image: 
+        linear-gradient(135deg, rgba(5, 108, 236, 0.90) 0%, rgba(3, 72, 161, 0.94) 100%),
+        url('assets/textura-blue.png');
+      background-repeat: repeat;
+      background-size: 160px auto;
     }
 
     /* Botão Principal com Sombra Vibrante */
@@ -231,7 +243,10 @@
     }
   </style>
 </head>
-<body class="bg-white text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white overflow-x-hidden">
+<body class="bg-slate-50/50 text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white overflow-x-hidden relative">
+
+  <!-- Camada Global Fixa de Textura Suave (Marca d'água técnica de refrigeração) -->
+  <div class="fixed inset-0 pointer-events-none z-0 bg-tech-pattern opacity-[0.065] mix-blend-multiply" aria-hidden="true"></div>
 
   <!-- ========================================== -->
   <!-- BARRA DE TOPO / IDENTIFICAÇÃO INSTITUCIONAL-->
