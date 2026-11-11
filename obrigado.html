@@ -57,17 +57,19 @@
       transform: translateY(-2px);
     }
 
-    .bg-tech-pattern {
-      background-image: url('assets/textura-dark.png');
-      background-repeat: repeat;
-      background-size: 140px auto;
+    /* Grade quadriculada técnica com quadrados pequenos e quase transparentes */
+    .bg-grid-subtle {
+      background-size: 18px 18px;
+      background-image: 
+        linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
     }
   </style>
 </head>
-<body class="bg-slate-50/60 text-slate-800 font-sans min-h-screen flex flex-col justify-between hero-light-spotlight antialiased relative">
+<body class="bg-white text-slate-800 font-sans min-h-screen flex flex-col justify-between hero-light-spotlight antialiased relative">
 
-  <!-- Camada Global Fixa de Textura Suave -->
-  <div class="fixed inset-0 pointer-events-none z-0 bg-tech-pattern opacity-[0.065] mix-blend-multiply" aria-hidden="true"></div>
+  <!-- Grade Técnica Quadriculada (Quadrados Pequenos e Quase Transparentes) -->
+  <div class="fixed inset-0 pointer-events-none z-0 bg-grid-subtle" aria-hidden="true"></div>
 
   <!-- Cabeçalho -->
   <header class="py-6 bg-white/90 border-b border-slate-200">
